@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoCon
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -66,10 +67,12 @@ class ClienteTests {
 	public void teste1Criacao() throws ParseException {
 		LOGGER.info("Criando objetos...");
 
-		Cliente c1 = new Cliente("Cliente 1", "c1@email.com", "123456");
-		Cliente c2 = new Cliente("Cliente 2", "c2@email.com", "123456");
-		Cliente c3 = new Cliente("Cliente 3", "c3@email.com", "123456");
-		Cliente c4 = new Cliente("Cliente 4", "c4@email.com", "123456");
+		String senhaHash = new BCryptPasswordEncoder().encode("123456");
+
+		Cliente c1 = new Cliente("Cliente 1", "c1@email.com", senhaHash);
+		Cliente c2 = new Cliente("Cliente 2", "c2@email.com", senhaHash);
+		Cliente c3 = new Cliente("Cliente 3", "c3@email.com", senhaHash);
+		Cliente c4 = new Cliente("Cliente 4", "c4@email.com", senhaHash);
 
 		LOGGER.info("Salvando objetos no repositório...");
 
