@@ -19,6 +19,8 @@ public class Application {
 		log.info("Inicializando API...");
 
 		System.setProperty("server.servlet.context-path", "/cliente-api");
+		System.setProperty("server.port", "8081");
 		new SpringApplicationBuilder(Application.class).web(WebApplicationType.SERVLET).run(args);
+		
 	}
 }
