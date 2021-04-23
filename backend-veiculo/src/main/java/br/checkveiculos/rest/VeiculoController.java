@@ -67,7 +67,7 @@ public class VeiculoController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping(value = "{id}")
 	public boolean deletarVeiculo(@PathVariable String id) throws Exception {
-		if (veiculoService.isVeiculoExists(id)) {
+		if (!veiculoService.isVeiculoExists(id)) {
 			throw new Exception("O veículo não existe.");
 		}
 
