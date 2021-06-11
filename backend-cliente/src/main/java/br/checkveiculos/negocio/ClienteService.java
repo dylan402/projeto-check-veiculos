@@ -87,6 +87,10 @@ public class ClienteService {
 	}
 	
 	public String logarCliente(Cliente cliente) {
+		if (logger.isInfoEnabled()) {
+			logger.info("Logando cliente...");
+		}
+
 		Optional<Cliente> clienteEncontrado = this.clienteRepository.findByEmail(cliente.getEmail());
 		
 		if (!clienteEncontrado.isPresent()) {
