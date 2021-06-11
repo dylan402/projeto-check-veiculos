@@ -57,6 +57,10 @@ public class ClienteService {
 			logger.info("Salvando cliente...");
 		}
 		
+		if (this.isClienteExistsByEmail(cliente.getEmail())) {
+			throw new RuntimeException("Este e-mail já está em uso.");
+		}
+		
 		cliente.setSenha(this.criarHashSenha(cliente.getSenha()));
 
 		return this.clienteRepository.save(cliente);
@@ -66,9 +70,12 @@ public class ClienteService {
 		if (logger.isInfoEnabled()) {
 			logger.info("Salvando cliente...");
 		}
+		
 
 		if (!this.isClienteExists(cliente)) {
 			throw new RuntimeException("O cliente não foi encontrado.");
+		} else if (this.isEmailFromAnotherCliente(cliente)) {
+			throw new RuntimeException("Este e-mail já está em uso.");
 		}
 
 		return this.clienteRepository.save(cliente);
@@ -116,6 +123,21 @@ public class ClienteService {
 		Optional<Cliente> clienteEncontrado = this.clienteRepository.findById(id);
 
 		return clienteEncontrado.isPresent();
+	}
+	
+	public boolean isClienteExistsByEmail(String email) {
+		Optional<Cliente> clienteEncontrado = this.clienteRepository.findByEmail(email);
+
+		return clienteEncontrado.isPresent();
+	}
+	
+	public boolean isEmailFromAnotherCliente (Cliente cliente) {
+		Optional<Cliente> clienteEncontrado = this.clienteRepository.findByEmail(cliente.getEmail());
+		
+		if (clienteEncontrado.isPresent() && cliente.getId() != clienteEncontrado.get().getId()) {
+			return true;	
+		}
+		return false;
 	}
 	
 	public String criarHashSenha(String senha) {
