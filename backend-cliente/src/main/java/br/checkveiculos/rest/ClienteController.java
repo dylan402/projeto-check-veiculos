@@ -31,13 +31,13 @@ public class ClienteController {
 
 	@GetMapping
 	public List<Cliente> getClientes() {
-		return clienteService.getClientes();
+		return this.clienteService.getClientes();
 	}
 
 	@GetMapping(value = "{id}")
 	public Cliente getClienteById(@PathVariable String id) throws Exception {
 		if (!ObjectUtils.isEmpty(id)) {
-			return clienteService.getClienteById(id);
+			return this.clienteService.getClienteById(id);
 		}
 
 		throw new Exception("O cliente não foi encontrado.");
@@ -46,7 +46,7 @@ public class ClienteController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Cliente criarCliente(@RequestBody @NotNull Cliente cliente) throws Exception {
-		return clienteService.criarCliente(cliente);
+		return this.clienteService.criarCliente(cliente);
 	}
 
 	@PutMapping(value = "{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -65,11 +65,16 @@ public class ClienteController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping(value = "{id}")
 	public boolean deletarCliente(@PathVariable String id) throws Exception {
-		if (!clienteService.isClienteExists(id)) {
+		if (!this.clienteService.isClienteExists(id)) {
 			throw new Exception("O cliente não foi encontrado.");
 		}
 
-		clienteService.deletarCliente(id);
+		this.clienteService.deletarCliente(id);
 		return true;
+	}
+	
+	@PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String logarCliente(@RequestBody @NotNull Cliente cliente) {
+		return this.clienteService.logarCliente(cliente);
 	}
 }

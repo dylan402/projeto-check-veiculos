@@ -57,7 +57,7 @@ public class ClienteService {
 			logger.info("Salvando cliente...");
 		}
 		
-		cliente.setSenha(new BCryptPasswordEncoder().encode(cliente.getSenha()));
+		cliente.setSenha(this.criarHashSenha(cliente.getSenha()));
 
 		return this.clienteRepository.save(cliente);
 	}
@@ -85,6 +85,22 @@ public class ClienteService {
 
 		this.clienteRepository.deleteById(id);
 	}
+	
+	public String logarCliente(Cliente cliente) {
+		Optional<Cliente> clienteEncontrado = this.clienteRepository.findByEmail(cliente.getEmail());
+		
+		if (!clienteEncontrado.isPresent()) {
+			throw new RuntimeException("Nenhum cliente com este e-mail foi encontrado.");
+		}
+		
+		BCryptPasswordEncoder crypt = new BCryptPasswordEncoder(); 
+		
+		if (!crypt.matches(cliente.getSenha(), clienteEncontrado.get().getSenha())) {
+			throw new RuntimeException("Senha não confere.");
+		}
+		
+		return "{ \"id\": \"" + clienteEncontrado.get().getId() + "\" }";
+	}
 
 	public boolean isClienteExists(Cliente cliente) {
 		Optional<Cliente> clienteEncontrado = this.clienteRepository.findById(cliente.getId());
@@ -96,5 +112,9 @@ public class ClienteService {
 		Optional<Cliente> clienteEncontrado = this.clienteRepository.findById(id);
 
 		return clienteEncontrado.isPresent();
+	}
+	
+	public String criarHashSenha(String senha) {
+		return new BCryptPasswordEncoder().encode(senha);
 	}
 }
