@@ -1,3 +1,4 @@
+/*
 package br.checkveiculos.tests;
 
 import static org.junit.Assert.assertNotNull;
@@ -93,3 +94,4 @@ public class ClienteTests {
 		LOGGER.info("Finalizando teste de criação...");
 	}
 }
+*/
