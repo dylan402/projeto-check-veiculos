@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.apache.commons.collections4.IteratorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.checkveiculos.entidades.Cliente;
@@ -55,6 +56,8 @@ public class ClienteService {
 		if (logger.isInfoEnabled()) {
 			logger.info("Salvando cliente...");
 		}
+		
+		cliente.setSenha(new BCryptPasswordEncoder().encode(cliente.getSenha()));
 
 		return this.clienteRepository.save(cliente);
 	}
