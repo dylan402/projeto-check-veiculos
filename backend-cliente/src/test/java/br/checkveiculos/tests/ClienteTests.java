@@ -31,7 +31,7 @@ import br.checkveiculos.persistencia.ClienteRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { PropertyPlaceholderAutoConfiguration.class, ClienteTests.DynamoDBConfig.class })
-class ClienteTests {
+public class ClienteTests {
 
 	private static Logger LOGGER = LoggerFactory.getLogger(ClienteTests.class);
 
@@ -92,5 +92,4 @@ class ClienteTests {
 
 		LOGGER.info("Finalizando teste de criação...");
 	}
-
 }
