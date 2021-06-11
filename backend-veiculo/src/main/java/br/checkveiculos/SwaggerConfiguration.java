@@ -22,7 +22,7 @@ public class SwaggerConfiguration {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("Cliente API").description("API de referência para Cliente")
+		return new ApiInfoBuilder().title("Veiculo API").description("API de referência para Veiculo")
 				.license("Licença Apache 2.0").version("Versão 1.0.0").build();
 	}
 }
