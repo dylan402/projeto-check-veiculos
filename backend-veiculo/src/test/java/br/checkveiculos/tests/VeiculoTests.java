@@ -3,8 +3,6 @@ package br.checkveiculos.tests;
 import static org.junit.Assert.assertNotNull;
 
 import java.text.ParseException;
-import java.util.Optional;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -85,14 +83,6 @@ public class VeiculoTests {
 		for (Veiculo veiculo : veiculos) {
 			LOGGER.info(veiculo.toString());
 		}
-
-		/**
-		 * LOGGER.info("Buscando veiculo pela placa...");
-		 * 
-		 * Optional<Veiculo> vPlaca = repositorio.findByPlaca("DEF-5678");
-		 * 
-		 * LOGGER.info("Veiculo=", vPlaca.get().toString());
-		 */
 
 		LOGGER.info("Finalizando teste de criação...");
 	}
