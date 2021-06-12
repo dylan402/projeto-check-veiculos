@@ -75,7 +75,7 @@ public class Veiculo {
 
 	@DynamoDBAttribute
 	public String getPlaca() {
-		return ano;
+		return placa;
 	}
 
 	public void setPlaca(String placa) {
@@ -85,6 +85,6 @@ public class Veiculo {
 	@Override
 	public String toString() {
 		return "[Veiculo id=" + this.id + ", idCliente=" + this.idCliente + ", marca=" + this.marca + ", modelo="
-				+ this.modelo + ", ano=" + this.ano + ", placa" + this.placa + "]";
+				+ this.modelo + ", ano=" + this.ano + ", placa=" + this.placa + "]";
 	}
 }
