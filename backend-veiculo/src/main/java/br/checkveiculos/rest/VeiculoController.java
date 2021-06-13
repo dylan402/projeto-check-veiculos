@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @RestController
@@ -32,8 +33,8 @@ public class VeiculoController {
 	}
 
 	@GetMapping
-	public List<Veiculo> getVeiculos() {
-		return veiculoService.getVeiculos();
+	public List<Veiculo> getVeiculos(@RequestParam("idCliente") String idCliente) {
+		return veiculoService.getVeiculos(idCliente);
 	}
 
 	@GetMapping(value = "{id}")

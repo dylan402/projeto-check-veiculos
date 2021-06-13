@@ -23,12 +23,12 @@ public class VeiculoService {
 		this.veiculoRepository = veiculoRepository;
 	}
 
-	public List<Veiculo> getVeiculos() {
+	public List<Veiculo> getVeiculos(String idCliente) {
 		if (logger.isInfoEnabled()) {
 			logger.info("Buscando veiculos...");
 		}
 
-		Iterable<Veiculo> veiculos = this.veiculoRepository.findAll();
+		Iterable<Veiculo> veiculos = this.veiculoRepository.findByIdCliente(idCliente);
 
 		if (veiculos == null) {
 			return new ArrayList<Veiculo>();

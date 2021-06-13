@@ -10,4 +10,5 @@ import br.checkveiculos.entidades.Veiculo;
 @EnableScan()
 public interface VeiculoRepository extends CrudRepository<Veiculo, String> {
 	Optional<Veiculo> findByPlaca(String placa);
+	Iterable<Veiculo> findByIdCliente(String idCliente);
 }
