@@ -110,7 +110,6 @@ public class ClienteService {
 			throw new RuntimeException("Senha não confere.");
 		}
 		
-		
 		return clienteEncontrado.get();
 	}
 
