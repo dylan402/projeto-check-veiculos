@@ -74,7 +74,7 @@ public class ClienteController {
 	}
 	
 	@PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String logarCliente(@RequestBody @NotNull Cliente cliente) {
+	public Cliente logarCliente(@RequestBody @NotNull Cliente cliente) {
 		return this.clienteService.logarCliente(cliente);
 	}
 }

@@ -93,7 +93,7 @@ public class ClienteService {
 		this.clienteRepository.deleteById(id);
 	}
 	
-	public String logarCliente(Cliente cliente) {
+	public Cliente logarCliente(Cliente cliente) {
 		if (logger.isInfoEnabled()) {
 			logger.info("Logando cliente...");
 		}
@@ -110,7 +110,8 @@ public class ClienteService {
 			throw new RuntimeException("Senha não confere.");
 		}
 		
-		return "{ \"id\": \"" + clienteEncontrado.get().getId() + "\" }";
+		
+		return clienteEncontrado.get();
 	}
 
 	public boolean isClienteExists(Cliente cliente) {
