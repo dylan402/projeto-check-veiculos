@@ -21,7 +21,29 @@ Realize o download do projeto e abertura no eclipse.
 # Preparando ambiente
 
 Para perfeito funcionamento do **Dynamo DB** é necessário configuração da **região us-east-2    Leste dos EUA (Ohio) na Amazon**.
-<br><br>
+<br>
+
+## Criação de tabelas no Dynamo DB
+
+Após efetuar login na plataforma Amazon, acessar o Dashboard do Dynamo DB.
+
+Deve-se realizar a **criação de duas tabelas**. No Dashboard acesse a aba tabelas do lado esquerdo.
+
+Através do botão criar tabela e insira:
+
+### **Tabela de Clientes**
+- Nome da tabela: **cliente**
+- Chave primária: **id**
+- Definir a chave primária como **tipo String**
+- Para as demais opções, manter a configuração padrão
+- Clicar sobre o botão Criar para concluir
+
+### **Tabela de Veículos**
+- Nome da tabela: **veiculo**
+- Chave primária: **id**
+- Definir a chave primária como **tipo String**
+- Para as demais opções, manter a configuração padrão
+- Clicar sobre o botão Criar para concluir
 
 ## Criar o arquivo de acesso ao Dynamo DB da Amazon.
 <br>
