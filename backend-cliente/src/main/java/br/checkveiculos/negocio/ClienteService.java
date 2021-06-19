@@ -77,6 +77,8 @@ public class ClienteService {
 		} else if (this.isEmailFromAnotherCliente(cliente)) {
 			throw new RuntimeException("Este e-mail já está em uso.");
 		}
+		
+		cliente.setSenha(this.criarHashSenha(cliente.getSenha()));
 
 		return this.clienteRepository.save(cliente);
 	}
@@ -134,7 +136,7 @@ public class ClienteService {
 	public boolean isEmailFromAnotherCliente (Cliente cliente) {
 		Optional<Cliente> clienteEncontrado = this.clienteRepository.findByEmail(cliente.getEmail());
 		
-		if (clienteEncontrado.isPresent() && cliente.getId() != clienteEncontrado.get().getId()) {
+		if (clienteEncontrado.isPresent() && !cliente.getId().equals(clienteEncontrado.get().getId())) {
 			return true;	
 		}
 		return false;
