@@ -102,8 +102,7 @@ Ambos os binários serão armazenados nos respectivos diretórios:
 - projeto-check-veiculos\backend-veiculo\target
 <br><br>
 
-
-# Executando a aplicação
+# Executando a aplicação através dos binários
 
 Para iniciar o serviço deve-se via terminal, navegar até o diretório dos respectivos arquivos:
 
@@ -120,3 +119,39 @@ Para iniciar o serviço deve-se via terminal, navegar até o diretório dos resp
 - Inserir comando **java -jar backend-veiculo-0.0.1-SNAPSHOT.jar**
 - Ao termino da execução do comando, será exibida a mensagem: **Started Application**
 - Utiliza **porta 8080**
+
+<br>
+
+# Criando as imagens no Docker
+
+Criaremos duas imagens, sendo uma referente ao **serviço dos clientes** e outra para **veículos**. 
+
+### **Cliente:**
+1. Através do **cmd** acesse o diretório: **projeto-check-veiculos\backend-cliente**
+2. Insira o comando: **docker build --build-arg JAR_FILE=./target/backend-cliente-0.0.1-SNAPSHOT.jar -t backend-cliente .**
+3. Para visualizar a imagem criada, digite o comando: **docker images**
+4. Observe que a imagem foi criada com nome: **backend-cliente**
+
+### **Veículos:**
+1. Através do **cmd** acesse o diretório: **projeto-check-veiculos\backend-veiculo**
+2. Insira o comando: **docker build --build-arg JAR_FILE=./target/backend-veiculo-0.0.1-SNAPSHOT.jar -t backend-veiculo .**
+3. Para visualizar a imagem criada, digite o comando: **docker images**
+4. Observe que a imagem foi criada com nome: **backend-veiculo**
+
+<br>
+
+# Executando a aplicação através do Docker
+
+Para iniciar o serviço deve-se via terminal:
+
+### **Backend-cliente**
+- **docker run -it -p 8081:8081 backend-cliente**
+- Ao **termino** da execução do comando, será exibida a mensagem: **Started Application**
+- Observar que o serviço utiliza a **porta 8081**
+
+<br>
+
+### **Backend-veiculo**
+- **docker run -it -p 8080:8080 backend-veiculo**
+- Ao **termino** da execução do comando, será exibida a mensagem: **Started Application**
+- Observar que o serviço utiliza a **porta 8080**
